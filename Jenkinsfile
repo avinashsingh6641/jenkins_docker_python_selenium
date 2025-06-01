@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Checkout Git Repo') {
             steps {
-                git 'https://github.com/avinashsingh6641/jenkins_docker_python_selenium.git'
+                git url: 'https://github.com/avinashsingh6641/jenkins_docker_python_selenium.git', branch: 'main'
             }
         }
 
