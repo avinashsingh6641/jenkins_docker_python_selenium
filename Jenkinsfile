@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        git 'git'  // Use the name you set in the Git section
+        git 'Default'  // Use the name you set in the Git section
     }
 
     stages {
