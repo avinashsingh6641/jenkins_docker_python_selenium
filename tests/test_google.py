@@ -1,28 +1,26 @@
+# tests/test_google.py
+
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
-import time
+from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 
-# Chrome options
-options = Options()
-options.add_argument("--no-sandbox")
-options.add_argument("--disable-dev-shm-usage")
-options.add_argument("--headless=new")  # Remove this if you want to see browser
 
-# Start Chrome directly
-driver = webdriver.Chrome(options=options)
+def test_google():
+    # Set up Chrome options
+    options = webdriver.ChromeOptions()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--headless")  # Remove if you want visible browser
 
-try:
+    # Create Chrome driver using locally installed Selenium + ChromeDriver
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+    # Open Google
     driver.get("https://www.google.com")
-    print("Page title:", driver.title)
 
-    search_box = driver.find_element(By.NAME, "q")
-    search_box.send_keys("Hello from Selenium!")
-    search_box.send_keys(Keys.RETURN)
+    # Assert page title contains "Google"
+    assert "Google" in driver.title
+    print(f"Page title is: {driver.title}")
 
-    time.sleep(2)  # Let the results load
-    print("New page title:", driver.title)
-
-finally:
+    # Quit browser
     driver.quit()
