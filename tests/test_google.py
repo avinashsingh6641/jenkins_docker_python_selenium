@@ -6,8 +6,14 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 
 def test_google():
-    # Setup Chrome WebDriver
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument("--no-sandbox")
+    options.add_argument("--disable-dev-shm-usage")
+
+    driver = webdriver.Remote(
+        command_executor='http://localhost:4444/wd/hub',
+        options=options
+    )
 
     # Open Google
     driver.get("https://www.google.com")
