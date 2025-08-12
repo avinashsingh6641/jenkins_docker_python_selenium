@@ -7,7 +7,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 
 def test_google():
     # Setup Chrome WebDriver
-    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()))
+    driver = webdriver.Chrome()
 
     # Open Google
     driver.get("https://www.google.com")
