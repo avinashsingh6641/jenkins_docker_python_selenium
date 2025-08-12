@@ -14,6 +14,7 @@ def test_google():
 
     # Assert page title contains "Google"
     assert "Google" in driver.title
+    print(f"hjhjdfhjdf {driver.title}")
 
     # Quit browser
     driver.quit()
