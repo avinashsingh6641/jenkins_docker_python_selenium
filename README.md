@@ -8,7 +8,7 @@ apt-get update && apt-get install -y docker.io
 docker exec -it jenkins-docker sh
 
 
-
+docker compose build --no-cache
 docker-compose up -d
 docker compose down
 
