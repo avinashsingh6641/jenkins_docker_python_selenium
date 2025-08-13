@@ -1,0 +1,44 @@
+pipeline {
+    agent {
+        docker {
+            image 'selenium/standalone-chrome:latest'
+            args '-u root' // root so apt and pip installs work
+        }
+    }
+
+    stages {
+        stage('Install Python & Pip') {
+            steps {
+                sh '''
+                    apt-get update
+                    apt-get install -y python3 python3-pip
+                    python3 --version
+                    pip3 --version
+                '''
+            }
+        }
+
+        stage('Pull Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/avinashsingh6641/jenkins_docker_python_selenium.git'
+            }
+        }
+
+        stage('Install Requirements') {
+            steps {
+                sh '''
+                    pip3 install --no-cache-dir -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Run Tests') {
+            steps {
+                sh '''
+                    cd tests
+                    pytest -v -s test_google.py
+                '''
+            }
+        }
+    }
+}
