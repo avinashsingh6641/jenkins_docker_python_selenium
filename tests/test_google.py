@@ -3,8 +3,8 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
-
-
+from pathlib import Path
+root_dir = Path(__file__).parent.parent.absolute()
 def test_google():
     # Set up Chrome options
     options = webdriver.ChromeOptions()
@@ -21,6 +21,26 @@ def test_google():
     # Assert page title contains "Google"
     assert "Google" in driver.title
     print(f"Page title is: {driver.title}")
+    take_screenshot(driver,"google_homepage",f"{root_dir}/screenshots")
+    with open(f"{root_dir}/screenshots/ss.txt", "r", encoding="utf-8") as f:
+        data = f.read()
+        print(f"fhjdfjhdfd{data}")
 
     # Quit browser
     driver.quit()
+
+def take_screenshot(driver, name_prefix="screenshot", save_dir):
+    # Create folder if it doesn't exist
+    os.makedirs(save_dir, exist_ok=True)
+
+    # Timestamp for unique file names
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+
+    # Full path for screenshot file
+    file_path = os.path.join(save_dir, f"{name_prefix}_{timestamp}.png")
+
+    # Take screenshot
+    driver.save_screenshot(file_path)
+    print(f"✅ Screenshot saved: {file_path}")
+
+    return file_path
