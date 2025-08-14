@@ -7,6 +7,11 @@ pipeline {
     }
 
     stages {
+        stage('Clean Workspace') {
+            steps {
+                cleanWs() // Jenkins Workspace Cleanup plugin
+                }
+        }
         stage('Install Python & Pip') {
             steps {
                 sh '''
@@ -39,6 +44,13 @@ pipeline {
                     pytest -v -s test_google.py
                 '''
             }
+        }
+    }
+
+    post {
+        always {
+            // Archive all screenshots from 'screenshots' folder
+            archiveArtifacts artifacts: 'screenshots/**/*.png', fingerprint: true
         }
     }
 }
