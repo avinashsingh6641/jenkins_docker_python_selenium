@@ -29,7 +29,7 @@ def test_google():
     # Quit browser
     driver.quit()
 
-def take_screenshot(driver, name_prefix="screenshot", save_dir):
+def take_screenshot(driver,name_prefix, save_dir):
     # Create folder if it doesn't exist
     os.makedirs(save_dir, exist_ok=True)
 
