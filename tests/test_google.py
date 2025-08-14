@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
+import os
 root_dir = Path(__file__).parent.parent.absolute()
 def test_google():
     # Set up Chrome options
