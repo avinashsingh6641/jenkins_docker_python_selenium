@@ -25,7 +25,7 @@ def test_google():
     print(f"Page title is: {driver.title}")
     take_screenshot(driver,"google_homepage",f"{root_dir}/screenshots")
     print(f"vroot_dir ----- {root_dir}")
-    with open(f"{root_dir}/screenshots/ss.txt", "r", encoding="utf-8") as f:
+    with open(f"{root_dir}/tests/screenshots/ss.txt", "r", encoding="utf-8") as f:
         data = f.read()
         print(f"fhjdfjhdfd --- {data}")
 
