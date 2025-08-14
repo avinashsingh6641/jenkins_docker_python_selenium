@@ -5,6 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from pathlib import Path
 import os
+import datetime
 root_dir = Path(__file__).parent.parent.absolute()
 def test_google():
     # Set up Chrome options
@@ -35,7 +36,7 @@ def take_screenshot(driver,name_prefix, save_dir):
     os.makedirs(save_dir, exist_ok=True)
 
     # Timestamp for unique file names
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
 
     # Full path for screenshot file
     file_path = os.path.join(save_dir, f"{name_prefix}_{timestamp}.png")
