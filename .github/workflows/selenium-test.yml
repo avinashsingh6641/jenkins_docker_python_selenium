@@ -30,3 +30,10 @@ jobs:
       - name: Run Selenium tests (pytest)
         run: |
           pytest -s tests/ --maxfail=1 --disable-warnings -v
+
+      - name: Upload screenshots
+        if: always()   # run this even if tests fail
+        uses: actions/upload-artifact@v3
+        with:
+          name: selenium-screenshots
+          path: screenshots/
