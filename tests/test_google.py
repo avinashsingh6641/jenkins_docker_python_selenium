@@ -45,5 +45,6 @@ def take_screenshot(driver,name_prefix, save_dir):
     # Take screenshot
     driver.save_screenshot(file_path)
     print(f"✅ Screenshot saved: {file_path}")
+    print("newwwww")
 
     return file_path
