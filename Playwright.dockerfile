@@ -1,18 +1,14 @@
-FROM mcr.microsoft.com/playwright:v1.45.0-jammy
+FROM mcr.microsoft.com/playwright/python:v1.45.0-jammy
 
 WORKDIR /tests
 
-# Install any system deps (optional)
-# RUN apt-get update && apt-get install -y python3 python3-pip
-
-# Copy your test code
+# Copy all repo files into test container
 COPY . .
 
-# Install dependencies (if required) jhj
-# Example for Python:
-# RUN pip install -r requirements.txt
+# Install Python requirements
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Example for Node:
-# RUN npm install
+# Install Playwright browsers
+RUN playwright install --with-deps
 
-ENTRYPOINT [ "bash" ]
+CMD ["bash"]
