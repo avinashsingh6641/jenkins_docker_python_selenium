@@ -1,0 +1,14 @@
+HOST MACHINE (Windows or Linux)
+|
+|-- Docker Engine (docker.sock)
+|
+|-- Jenkins Container (with docker CLI)
+|       |
+|       └── Runs docker commands:
+|             docker run test-runner:latest
+|
+|-- Test-Runner Containers (ephemeral)
+        |
+        ├── git clone <repo>
+        ├── pip install / npm install / etc
+        └── pytest / playwright / selenium
