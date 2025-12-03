@@ -12,3 +12,11 @@ HOST MACHINE (Windows or Linux)
         ├── git clone <repo>
         ├── pip install / npm install / etc
         └── pytest / playwright / selenium
+
+
+
+docker compose up --build -d
+docker compose down
+docker compose start
+
+docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
