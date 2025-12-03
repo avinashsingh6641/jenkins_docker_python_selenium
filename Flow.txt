@@ -20,3 +20,57 @@ docker compose down
 docker compose start
 
 docker exec -it jenkins cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+pipeline {
+    agent any
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/avinashsingh6641/jenkins_docker_python_selenium.git'
+            }
+        }
+
+        stage('List Workspace Files') {
+            steps {
+                sh '''
+                echo "===== Jenkins Workspace Files ====="
+                pwd
+                ls -la
+                '''
+            }
+        }
+
+        stage('Build Playwright Test Image') {
+            steps {
+                sh '''
+                echo "Building Playwright Test Image..."
+
+                docker build \
+                    -f Playwright.dockerfile \
+                    -t playwright_test_image .
+                '''
+            }
+        }
+
+        stage('Run Playwright Test Container') {
+            steps {
+                sh '''
+                echo "Running Playwright Test Container..."
+
+                docker run --rm \
+                    --name playwright_runner \
+                    playwright_test_image \
+                    bash -c "
+                        echo '===== Files Inside Test Container =====';
+                        ls -la;
+                        python3 -m pytest tests/test_playwright.py
+                    "
+                '''
+            }
+        }
+
+    }
+}
