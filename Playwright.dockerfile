@@ -8,7 +8,10 @@ COPY . .
 # Install Python requirements
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Install Playwright browsers
-# RUN playwright install --with-deps
+# # Upgrade the Python Playwright library
+# RUN pip install --upgrade playwright
+
+# IMPORTANT: Upgrade the browsers too
+RUN playwright install --with-deps
 
 CMD ["bash"]
