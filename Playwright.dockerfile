@@ -16,6 +16,11 @@ RUN python --version
 RUN pip --version
 RUN python -m pip list
 RUN python -m pytest --version
+RUN which python
+RUN which python3
+RUN which pip
+RUN python --version
+RUN python3 --version
 
 # # Upgrade the Python Playwright library
 # RUN pip install --upgrade playwright
