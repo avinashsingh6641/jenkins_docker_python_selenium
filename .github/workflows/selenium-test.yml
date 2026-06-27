@@ -27,7 +27,11 @@ jobs:
           # If you have extra dependencies in requirements.txt
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
-      - name: Run Selenium tests (pytest)
+      - name: Install Playwright browsers
+        run: |
+          python -m playwright install --with-deps
+
+      - name: Run Selenium and Playwright tests (pytest)
         run: |
           pytest -s tests/ --maxfail=1 --disable-warnings -v
 
