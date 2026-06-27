@@ -15,7 +15,9 @@ docker-run:
 		$(IMAGE_NAME) \
 		make test
 
-ci: docker-build docker-run
+ci: 
+	make docker-build 
+	make docker-run
 
 test:
 	pytest -s tests/ --maxfail=1 --disable-warnings -v
