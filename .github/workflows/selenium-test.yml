@@ -33,7 +33,7 @@ jobs:
 
       - name: List Docker Workspace
         run: |
-          make ci
+          make debug-docker-workspace
 
       - name: Run Test
         run: |
