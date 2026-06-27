@@ -3,10 +3,11 @@ DOCKERFILE=Playwright.dockerfile
 
 .PHONY: test docker-build docker-run ci clean
 
+test:
+	pytest -s tests/ --maxfail=1 --disable-warnings -v
 
 docker-build:
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
-
 
 docker-run:
 	docker run --rm \
@@ -19,5 +20,3 @@ ci:
 	make docker-build 
 	make docker-run
 
-test:
-	pytest -s tests/ --maxfail=1 --disable-warnings -v

@@ -6,6 +6,10 @@ WORKDIR /app
 COPY . .
 
 # Install Python requirements
+RUN apt-get update && \
+    apt-get install -y make && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN pip install --no-cache-dir -r requirements.txt
 
 # # Upgrade the Python Playwright library
