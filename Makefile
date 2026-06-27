@@ -6,21 +6,21 @@ DOCKERFILE=Playwright.dockerfile
 test:
 	python -m pytest -s tests/ --maxfail=1 --disable-warnings -v
 
+list-workspace:
+	pwd
+	ls -la
+
 docker-build:
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
 
-docker-run:
+docker-run-test:
 	docker run --rm \
 		-v $(PWD):/app \
 		-w /app \
-		$(IMAGE_NAME)
+		$(IMAGE_NAME)\
+		sh -c "make list-workspace && make test"
+	
 
-run-test:
-	make docker-run
-	make test
 
-debug-docker-workspace:
-	pwd
-	ls -la
 
 

@@ -16,28 +16,15 @@ jobs:
 
       - name: Debug Github Workspace 
         run: |
-          echo "Current Directory:"
-          pwd
-
-          echo ""
-          echo "Files in current directory:"
-          ls -la
-
-          echo ""
-          echo "Recursive directory tree:"
-          ls -R
+          make list-workspace
 
       - name: Run Docker Setup
         run: |
           make docker-build
 
-      - name: List Docker Workspace
-        run: |
-          make debug-docker-workspace
-
       - name: Run Test
         run: |
-          make test
+          make docker-run-test
 
       - name: Upload Screenshots
         if: always()
