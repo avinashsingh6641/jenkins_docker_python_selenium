@@ -30,7 +30,7 @@ def test_google():
         take_screenshot(page, "google_homepage", save_dir)
 
         print(f"root_dir ----- {root_dir}")
-        ptint("re learning")
+        print("re learning")
 
         # Read file
         with open(f"{root_dir}/tests/screenshots/ss.txt", "r", encoding="utf-8") as f:
