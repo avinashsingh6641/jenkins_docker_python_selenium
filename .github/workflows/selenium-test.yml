@@ -14,7 +14,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Debug Workspace
+      - name: Debug Github Workspace 
         run: |
           echo "Current Directory:"
           pwd
@@ -28,6 +28,10 @@ jobs:
           ls -R
 
       - name: Run Docker Setup
+        run: |
+          make ci
+
+      - name: List Docker Workspace
         run: |
           make ci
 

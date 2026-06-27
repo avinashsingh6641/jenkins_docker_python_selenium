@@ -1,7 +1,7 @@
 IMAGE_NAME=playwright-runner
 DOCKERFILE=Playwright.dockerfile
 
-.PHONY: test docker-build docker-run ci clean
+.PHONY: test docker-build docker-run ci debug-docker-workspace clean
 
 test:
 	pytest -s tests/ --maxfail=1 --disable-warnings -v
@@ -18,4 +18,10 @@ docker-run:
 ci: 
 	make docker-build 
 	make docker-run
+
+debug-docker-workspace:
+	pwd
+	ls -la
+	find .
+
 
