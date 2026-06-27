@@ -1,4 +1,4 @@
-name: Selenium Pytest Tests
+name: Playwright Test
 
 on:
   push:
@@ -11,33 +11,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: "3.10"
-
-      - name: Install dependencies
+      - name: Run Tests
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest selenium webdriver-manager
+          make ci
 
-          # If you have extra dependencies in requirements.txt
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
-      - name: Install Playwright browsers
-        run: |
-          python -m playwright install --with-deps
-
-      - name: Run Selenium and Playwright tests (pytest)
-        run: |
-          pytest -s tests/ --maxfail=1 --disable-warnings -v
-
-      - name: Upload screenshots
-        if: always()   # run this even if tests fail
+      - name: Upload Screenshots
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: selenium-screenshots
+          name: screenshots
           path: screenshots/
