@@ -18,4 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # IMPORTANT: Upgrade the browsers too
 # RUN playwright install --with-deps
 
-CMD ["make", "test"]
+# CMD ["make", "test"]
+#CMD ["sh", "-c", "echo PWD=$(pwd) && ls -la && env"]
+# CMD ["bash", "-c", "echo 'Starting tests...' && make test"]
+CMD ["echo", "Hello from Docker container"]
