@@ -14,6 +14,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      - name: Debug Workspace
+        run: |
+          echo "Current Directory:"
+          pwd
+
+          echo ""
+          echo "Files in current directory:"
+          ls -la
+
+          echo ""
+          echo "Recursive directory tree:"
+          ls -R
+
       - name: Run Tests
         run: |
           make ci
