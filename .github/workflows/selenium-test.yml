@@ -27,9 +27,13 @@ jobs:
           echo "Recursive directory tree:"
           ls -R
 
-      - name: Run Tests
+      - name: Run Docker Setup
         run: |
           make ci
+
+      - name: Run Test
+        run: |
+          make test
 
       - name: Upload Screenshots
         if: always()

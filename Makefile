@@ -13,8 +13,7 @@ docker-run:
 	docker run --rm \
 		-v $(PWD):/app \
 		-w /app \
-		$(IMAGE_NAME) \
-		make test
+		$(IMAGE_NAME)
 
 ci: 
 	make docker-build 
