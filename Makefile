@@ -15,9 +15,9 @@ docker-run:
 		-w /app \
 		$(IMAGE_NAME)
 
-ci: 
-	make docker-build 
+run-test:
 	make docker-run
+	make test
 
 debug-docker-workspace:
 	pwd
