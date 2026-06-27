@@ -4,7 +4,7 @@ DOCKERFILE=Playwright.dockerfile
 .PHONY: test docker-build docker-run ci debug-docker-workspace clean
 
 test:
-	pytest -s tests/ --maxfail=1 --disable-warnings -v
+	python -m pytest -s tests/ --maxfail=1 --disable-warnings -v
 
 docker-build:
 	docker build -f $(DOCKERFILE) -t $(IMAGE_NAME) .
@@ -22,6 +22,5 @@ ci:
 debug-docker-workspace:
 	pwd
 	ls -la
-	find .
 
 

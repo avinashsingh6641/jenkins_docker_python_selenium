@@ -12,6 +12,11 @@ RUN apt-get update && \
 
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN python --version
+RUN pip --version
+RUN python -m pip list
+RUN python -m pytest --version
+
 # # Upgrade the Python Playwright library
 # RUN pip install --upgrade playwright
 
