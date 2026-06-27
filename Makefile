@@ -1,5 +1,5 @@
 IMAGE_NAME=playwright-runner
-DOCKERFILE=playwright.dockerfile
+DOCKERFILE=Playwright.dockerfile
 
 .PHONY: test docker-build docker-run ci clean
 
