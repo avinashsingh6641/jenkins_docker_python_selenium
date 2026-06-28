@@ -18,7 +18,7 @@ def test_google():
         page = context.new_page()
 
         # Go to Google
-        page.goto("https://www.google.com")
+        page.goto("https://www.youtube.com")
 
         # Assert page title
         title = page.title()
